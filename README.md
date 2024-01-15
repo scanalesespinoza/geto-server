@@ -1,52 +1,82 @@
-# geto-server
+* * *
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+Geto-Server
+===========
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+Welcome to the Geto-Server repository! This repository contains a Quarkus-based Java application designed for deployment to Azure Web App Service, with an automated CI/CD pipeline using GitHub Actions.
 
-## Running the application in dev mode
+Overview
+--------
 
-You can run your application in dev mode that enables live coding using:
-```shell script
-./mvnw compile quarkus:dev
-```
+This project demonstrates a streamlined process for building and deploying a Java application. It leverages GitHub Actions for continuous integration and deployment (CI/CD) and Azure Web App Service for hosting the application.
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8080/q/dev/.
+Getting Started
+---------------
 
-## Packaging and running the application
+### Prerequisites
 
-The application can be packaged using:
-```shell script
-./mvnw package
-```
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+*   Java Development Kit (JDK)
+*   Maven (for building the Java application)
+*   Git (for version control)
+*   Access to Azure cloud services
+*   A GitHub account
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
+### Setting Up for Local Development
 
-If you want to build an _über-jar_, execute the following command:
-```shell script
-./mvnw package -Dquarkus.package.type=uber-jar
-```
+1.  **Clone the Repository**:
+    
+    bashCopy code
+    
+    `git clone https://github.com/scanalesespinoza/geto-server.git cd geto-server`
+    
+2.  **Local Build**: Use Maven to build the application:
+    
+    bashCopy code
+    
+    `mvn clean package`
+    
+3.  **Run Locally**: After a successful build, run the application locally to test:
+    
+    bashCopy code
+    
+    `java -jar target/geto-server-1.0.0-SNAPSHOT-runner.jar`
+    
 
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
+### Continuous Integration and Deployment
 
-## Creating a native executable
+The repository is configured with GitHub Actions for CI/CD, automating the process of building, testing, and deploying the application to Azure Web App Service.
 
-You can create a native executable using: 
-```shell script
-./mvnw package -Dnative
-```
+#### GitHub Actions Workflow
 
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using: 
-```shell script
-./mvnw package -Dnative -Dquarkus.native.container-build=true
-```
+*   The workflow is defined in the `.github/workflows` directory.
+*   It triggers on pushes to the main branch, handling build and deployment.
 
-You can then execute your native executable with: `./target/geto-server-1.0.0-SNAPSHOT-runner`
+#### Azure Configuration
 
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.
+*   The application is set up to deploy to Azure Web App Service.
+*   Necessary configurations, including environment variables and service principal credentials, are securely stored in GitHub Secrets.
 
-## Related Guides
+### Automated Environment Management
 
-- WebSockets ([guide](https://quarkus.io/guides/websockets)): WebSocket communication channel support
+*   The project includes automation for managing the Azure Web
+
+App Service, specifically for scheduling start and stop times using Azure Automation or Logic Apps.
+
+*   This setup helps in optimizing costs, especially for non-production environments.
+
+Contribution
+------------
+
+Contributions to the Geto-Server project are welcome! If you have suggestions or improvements, feel free to fork the repository and submit a pull request.
+
+Issues
+------
+
+If you encounter any issues or have questions, please file them in the repository's Issues section.
+
+License
+-------
+
+This project is licensed under the [MIT License](LICENSE.md) - see the LICENSE file for details.
+
+* * *
